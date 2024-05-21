@@ -2,32 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+#google_translate_element select {
+	background: transparent;
+	@apply text-white border border-solid border-white/50 rounded-md;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+#google_translate_element > div{
+	@apply flex items-center gap-2 justify-end
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+#google_translate_element > div > span > a{
+	@apply flex items-center gap-2
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+#google_translate_element option {
+	@apply bg-black;
 }
+
