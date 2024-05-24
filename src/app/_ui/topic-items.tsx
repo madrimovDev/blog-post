@@ -2,7 +2,6 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { memo } from "react";
 
 function TopicItems({ topics }: { topics: string[]}) {
 	const search = useSearchParams()
@@ -24,4 +23,4 @@ function TopicItems({ topics }: { topics: string[]}) {
 		</div>
 	);
 }
-export default memo(TopicItems)
+export default TopicItems
