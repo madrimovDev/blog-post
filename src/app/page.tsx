@@ -4,6 +4,7 @@ import Image from "next/image";
 import Topics from "./_ui/topics";
 import { useSearchParams } from "next/navigation";
 import Blogs from "./_ui/blogs";
+import { Suspense } from "react";
 
 export default async function BlogsPage() {
 	const blogs = await getBlogs();
@@ -18,9 +19,10 @@ export default async function BlogsPage() {
 					ullam voluptas quaerat blanditiis officiis. Nam!
 				</p>
 			</div>
-			<Topics/>
-			<Blogs blogs={blogs}/>
+			<Topics />
+			<Suspense>
+				<Blogs blogs={blogs} />
+			</Suspense>
 		</div>
 	);
 }
-
