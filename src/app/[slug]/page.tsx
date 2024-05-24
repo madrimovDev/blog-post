@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { getAllBlogSlug, getBlogBySlug } from "../_utils/fetcher";
+import ContentList from "../_ui/content-list";
 
 export async function generateStaticParams() {
 	return getAllBlogSlug();
@@ -32,6 +33,12 @@ export default async function BlogPage({
 	params: { slug: string };
 }) {
 	const blog = await getBlogBySlug(params.slug);
-	return <main className="mt-10 prose max-w-none">{blog.content}</main>;
+	return (
+		<div className="flex relative">
+			<main className="mt-10 flex-1 prose max-w-none ">{blog.content}</main>
+			<div className="relative max-w-60 w-full ">
+				<ContentList />
+			</div>
+		</div>
+	);
 }
-

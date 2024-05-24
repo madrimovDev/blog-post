@@ -66,13 +66,39 @@ export async function getBlogBySlug(slug: string) {
 		slug: path.parse(fileName).name,
 	};
 }
+export type BlogData = Awaited<ReturnType<typeof getBlogBySlug>>
 
 export async function getBlogs() {
 	const files = fs.readdirSync(contentDir);
 	const blogs = await Promise.all(
 		files.map(async (file) => await getBlogBySlug(path.parse(file).name))
 	);
+
 	return blogs;
+}
+
+export async function getTopics() {
+	const blogs = await getBlogs()
+	const topics = blogs.map((b) => b.frontmatter.topic).flat();
+	const clearedTopics = topics
+	.filter((item, index) => {
+		return topics.indexOf(item) === index;
+	})
+		.map((t) => t.trim());
+	return clearedTopics
+}
+
+export async function getBlogsByTitle(title: string) {
+	const files = fs.readdirSync(contentDir);
+	const blogs = await Promise.all(
+		files.map(async (file) => await getBlogBySlug(path.parse(file).name))
+	);
+
+	return blogs.filter((file) =>
+		file.frontmatter.title
+			.toLocaleLowerCase()
+			.includes(title.toLocaleLowerCase())
+	);
 }
 
 export function getAllBlogSlug() {
@@ -80,4 +106,3 @@ export function getAllBlogSlug() {
 	const slugs = files.map((file) => ({ slug: path.parse(file).name }));
 	return slugs;
 }
-
