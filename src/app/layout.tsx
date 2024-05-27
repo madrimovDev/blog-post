@@ -18,10 +18,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" data-theme='dark'>
 			<body className={inter.className}>
 				<GTranslate />
-				<div className="max-w-screen-lg mx-auto">
+				<div className="max-w-screen-lg mx-auto px-4">
 					<Navbar />
 					<BreadCrumbs />
 					{children}

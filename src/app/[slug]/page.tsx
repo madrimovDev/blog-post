@@ -22,7 +22,7 @@ export async function generateMetadata({
 			description: blog.frontmatter.description,
 			url: `https://blog.madrimov.uz/${params.slug}`,
 			type: "article",
-			images: [{ url: blog.frontmatter.preview }],
+			images: [{ url: 'https://blog.madrimov.uz' + blog.frontmatter.preview }],
 		},
 	};
 }
@@ -35,8 +35,8 @@ export default async function BlogPage({
 	const blog = await getBlogBySlug(params.slug);
 	return (
 		<div className="flex relative">
-			<main className="mt-10 flex-1 prose max-w-none ">{blog.content}</main>
-			<div className="relative max-w-60 w-full ">
+			<main className="mt-10 flex-1 prose max-w-none w-full">{blog.content}</main>
+			<div className="relative max-w-60 w-full hidden md:block">
 				<ContentList />
 			</div>
 		</div>

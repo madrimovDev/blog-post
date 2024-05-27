@@ -8,21 +8,21 @@ import { memo, useMemo } from "react";
 interface Props {
 	blogs: BlogData[];
 }
- function Blogs({ blogs }: Props) {
+function Blogs({ blogs }: Props) {
 	const search = useSearchParams();
-	const topic = search.get('topic')
+	const topic = search.get("topic");
 	const filteredBlogs = useMemo(() => {
-		return blogs.filter(blog => {
-			if(topic && topic == 'all') return blog
-			if(topic && blog.frontmatter.topic.includes(topic)) return blog
-		})
-	}, [topic, blogs])
+		return blogs.filter((blog) => {
+			if (topic && topic == "all") return blog;
+			if (topic && blog.frontmatter.topic.includes(topic)) return blog;
+		});
+	}, [topic, blogs]);
 	return (topic ? filteredBlogs : blogs).map((blog) => (
 		<Link
 			key={blog.slug}
 			href={blog.slug}
 		>
-			<div className="card card-side bg-base-200 shadow-xl">
+			<div className="card sm:card-side bg-base-200 shadow-xl">
 				<figure>
 					<Image
 						src={blog.frontmatter.preview}
@@ -57,4 +57,4 @@ interface Props {
 	));
 }
 
-export default memo(Blogs)
+export default memo(Blogs);
